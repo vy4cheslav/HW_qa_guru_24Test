@@ -1,5 +1,6 @@
 package guru.qa;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -45,6 +46,19 @@ public class FormTest {
 
         // Проверки заполнения формы
 
+        $(By.className("modal-open")).shouldBe(Condition.visible);
+        $(By.className("table-responsive")).shouldHave(Condition.text("Bill Klinton"));
+        $(By.className("table-responsive")).shouldHave(Condition.text("BKlinton@mail.ru"));
+        $(By.className("table-responsive")).shouldHave(Condition.text("Male"));
+        $(By.className("table-responsive")).shouldHave(Condition.text("9131234567"));
+        $(By.className("table-responsive")).shouldHave(Condition.text("15 July,2001"));
+        $(By.className("table-responsive")).shouldHave(Condition.text("Sports"));
+        $(By.className("table-responsive")).shouldHave(Condition.text("Music"));
+        $(By.className("table-responsive")).shouldHave(Condition.text("Reading"));
+        $(By.className("table-responsive")).shouldHave(Condition.text("Kutuzovsky Ave, 32"));
+        $(By.className("table-responsive")).shouldHave(Condition.text("qa-guru.jpg"));
+        $(By.className("table-responsive")).shouldHave(Condition.text("NCR"));
+        $(By.className("table-responsive")).shouldHave(Condition.text("Noida"));
 
     }
 }
