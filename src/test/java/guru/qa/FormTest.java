@@ -2,10 +2,12 @@ package guru.qa;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.selector.ByText;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
+
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 
@@ -16,35 +18,37 @@ public class FormTest {
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
-        Configuration.holdBrowserOpen = true;
-        Configuration.timeout = 5000; // default 4000
+    //    Configuration.holdBrowserOpen = true;
+    //    Configuration.timeout = 5000; // default 4000
     }
 
     @Test
     void firstTest() {
-        open("/automation-practice-form"); // открываем форму для ввода данных
-        $(By.id("firstName")).setValue("Bill");  // Заполняем поле firstName
-        $(By.id("lastName")).setValue("Klinton"); // Заполнеяем поле lastName
-        $(By.id("userEmail")).setValue("BKlinton@mail.ru");  // Заполняем поле userEmail
-        $x("//*[text()='Male']").click();  // Нажимаем радио баттон
-        $(By.id("userNumber")).setValue("9131234567");  // Заполняем поле userNumber
-        $(By.id("dateOfBirthInput")).click();  // Клик по полю дата рождения
-        $(By.className("react-datepicker__month-select")).selectOption(6); // Выбираем месяц
-        $(By.className("react-datepicker__year-select")).selectOption("2001"); // Выбираем год
-        $(".react-datepicker__day--015").click();  // Выбираем день
-        $("[id=subjectsInput]").setValue("d").sendKeys(Keys.ENTER); // Заполняем поле Subject
-        $x("//*[text()='Sports']").click();  // Выбираем хобби
-        $x("//*[text()='Music']").click();  // Выбираем хобби
-        $x("//*[text()='Reading']").click();  // Выбираем хобби
-        $("#uploadPicture").uploadFromClasspath("qa-guru.jpg");  // Загружаем картинку
-        $("#currentAddress").setValue("Kutuzovsky Ave, 32");  // Заполняем адрес
-        $("#state").click();  // Выбираем штат
-        $x("//*[text()='NCR']").click();  // Выбираем штат
-        $("#city").click(); // Выбираем город
-        $x("//*[text()='Noida']").click();  // Выбираем город
-        $("#submit").click(); // Подтверждаем форму ввода
+        open("/automation-practice-form");
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
+        $("#firstName").setValue("Bill");
+        $("#lastName").setValue("Klinton");
+        $("#userEmail").setValue("BKlinton@mail.ru");
+        $("#genterWrapper").$(byText("Male")).click();
+        $("#userNumber").setValue("9131234567");
+        $("#dateOfBirthInput").click();
+        $(".react-datepicker__month-select").selectOption(6);
+        $(".react-datepicker__year-select").selectOption("2001");
+        $(".react-datepicker__day--015").click();
+        $("#subjectsInput").setValue("d").pressEnter();
+        $("#hobbiesWrapper").$(byText("Sports")).click();
+        $("#hobbiesWrapper").$(byText("Reading")).click();
+        $("#hobbiesWrapper").$(byText("Music")).click();
+        $("#uploadPicture").uploadFromClasspath("qa-guru.jpg");
+        $("#currentAddress").setValue("Kutuzovsky Ave, 32");
+        $("#stateCity-wrapper").$(byText("Select State")).click();
+        $("#stateCity-wrapper").$(byText("NCR")).click();
+        $("#stateCity-wrapper").$(byText("Select City")).click();
+        $("#stateCity-wrapper").$(byText("Noida")).click();
+        $("#submit").click();
 
-        // Проверки заполнения формы
+
 
         $(By.className("modal-open")).shouldBe(Condition.visible);
         $(By.className("table-responsive")).shouldHave(Condition.text("Bill Klinton"));
