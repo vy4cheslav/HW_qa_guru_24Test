@@ -2,10 +2,8 @@ package guru.qa;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.selector.ByText;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -50,19 +48,19 @@ public class FormTest {
 
 
 
-        $(By.className("modal-open")).shouldBe(Condition.visible);
-        $(By.className("table-responsive")).shouldHave(Condition.text("Bill Klinton"));
-        $(By.className("table-responsive")).shouldHave(Condition.text("BKlinton@mail.ru"));
-        $(By.className("table-responsive")).shouldHave(Condition.text("Male"));
-        $(By.className("table-responsive")).shouldHave(Condition.text("9131234567"));
-        $(By.className("table-responsive")).shouldHave(Condition.text("15 July,2001"));
-        $(By.className("table-responsive")).shouldHave(Condition.text("Sports"));
-        $(By.className("table-responsive")).shouldHave(Condition.text("Music"));
-        $(By.className("table-responsive")).shouldHave(Condition.text("Reading"));
-        $(By.className("table-responsive")).shouldHave(Condition.text("Kutuzovsky Ave, 32"));
-        $(By.className("table-responsive")).shouldHave(Condition.text("qa-guru.jpg"));
-        $(By.className("table-responsive")).shouldHave(Condition.text("NCR"));
-        $(By.className("table-responsive")).shouldHave(Condition.text("Noida"));
+        $(".modal-open").shouldBe(Condition.visible);
+        $(".table-responsive").shouldHave(Condition.text("Bill Klinton"));
+        $(".table-responsive").shouldHave(Condition.text("BKlinton@mail.ru"));
+        $(".table-responsive").shouldHave(Condition.text("Male"));
+        $(".table-responsive").shouldHave(Condition.text("9131234567"));
+        $(".table-responsive").shouldHave(Condition.text("15 July,2001"));
+        $(".table-responsive").shouldHave(Condition.text("Sports"));
+        $(".table-responsive").shouldHave(Condition.text("Music"));
+        $(".table-responsive").shouldHave(Condition.text("Reading"));
+        $(".table-responsive").shouldHave(Condition.text("Kutuzovsky Ave, 32"));
+        $(".table-responsive").shouldHave(Condition.text("qa-guru.jpg"));
+        $(".table-responsive").shouldHave(Condition.text("NCR"));
+        $(".table-responsive").shouldHave(Condition.text("Noida"));
 
     }
 }
